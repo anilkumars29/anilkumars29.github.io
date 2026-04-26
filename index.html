@@ -929,6 +929,7 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#seminars">Seminars</a></li>
       <li><a href="#achievements">Wins</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -948,6 +949,7 @@
   <a href="#experience" onclick="closeMobile()">Experience</a>
   <a href="#skills" onclick="closeMobile()">Skills</a>
   <a href="#projects" onclick="closeMobile()">Projects</a>
+  <a href="#seminars" onclick="closeMobile()">Seminars</a>
   <a href="#achievements" onclick="closeMobile()">Wins</a>
   <a href="#contact" onclick="closeMobile()">Contact</a>
 </div>
@@ -1104,6 +1106,106 @@
   </div>
 </section>
 
+  <!-- SEMINARS -->
+<section id="seminars" style="background: var(--bg);">
+  <div class="section-header">
+    <div class="section-num">04 &nbsp; Talks & Seminars</div>
+    <h2 class="section-title">On <span>Stage</span></h2>
+  </div>
+
+  <div class="reveal" style="max-width:860px;">
+
+    <!-- card shell -->
+    <div style="
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      position: relative;
+      overflow: hidden;
+    ">
+      <!-- top accent bar -->
+      <div style="height:3px; background: linear-gradient(90deg, var(--accent), transparent);"></div>
+
+      <!-- card top -->
+      <div style="padding: 28px 32px 20px; display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; border-bottom: 1px solid var(--border2);">
+        <div style="flex:1; min-width:240px;">
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
+            <span style="font-weight:700; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); border:1px solid var(--border); padding:3px 10px; background:var(--accent-pale);">Featured</span>
+            <span style="font-weight:700; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); border:1px solid var(--border2); padding:3px 10px;">AI / ML</span>
+            <span style="font-weight:700; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); border:1px solid var(--border2); padding:3px 10px;">Seminar</span>
+            <span style="font-weight:700; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); border:1px solid var(--border2); padding:3px 10px;">2025</span>
+          </div>
+          <h3 style="font-weight:900; font-size:clamp(1.6rem,3vw,2.4rem); text-transform:uppercase; letter-spacing:0.02em; color:var(--text); line-height:1; margin-bottom:8px;">AI: Crisis or Catalyst?</h3>
+          <p style="font-weight:600; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:14px;">Engineering in the Age of Intelligent Systems</p>
+          <p style="font-weight:300; font-size:0.9rem; color:var(--text-dim); line-height:1.75; max-width:500px;">
+            A 41-slide interactive seminar exploring where AI stands today — from ML fundamentals and LLMs to AI agents and automation — and what it means for the next generation of engineers.
+          </p>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px; flex-shrink:0;">
+          <span style="font-weight:600; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); background:var(--bg); border:1px solid var(--border2); padding:4px 14px; white-space:nowrap;">41 slides</span>
+          <span style="font-weight:600; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); background:var(--bg); border:1px solid var(--border2); padding:4px 14px; white-space:nowrap;">~60 min talk</span>
+        </div>
+      </div>
+
+      <!-- preview toggle -->
+      <div id="seminarToggle" onclick="seminarTogglePreview()" style="
+        display:flex; align-items:center; justify-content:space-between;
+        padding:14px 32px; cursor:pointer; user-select:none;
+        background:var(--bg3); border-bottom:1px solid var(--border2);
+        transition: background 0.2s;
+      " onmouseover="this.style.background='var(--bg4)'" onmouseout="this.style.background='var(--bg3)'">
+        <span style="font-weight:700; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-muted); display:flex; align-items:center; gap:10px;">
+          <span style="width:7px; height:7px; border-radius:50%; background:var(--accent); display:inline-block; animation:seminarPulse 2s ease-in-out infinite;"></span>
+          Live Presentation Preview
+        </span>
+        <span id="seminarChevron" style="color:var(--text-muted); font-size:0.75rem; transition:transform 0.3s;">▼</span>
+      </div>
+
+      <!-- collapsible iframe -->
+      <div id="seminarFrame" style="max-height:0; overflow:hidden; transition:max-height 0.55s cubic-bezier(0.4,0,0.2,1);">
+        <iframe id="seminarIframe" src="about:blank" title="AI: Crisis or Catalyst?" style="width:100%; height:520px; border:none; display:block;"></iframe>
+      </div>
+
+      <!-- footer -->
+      <div style="padding:16px 32px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <span style="font-size:0.68rem; padding:3px 10px; background:var(--bg); color:var(--text-muted); border:1px solid var(--border2);">AI History</span>
+          <span style="font-size:0.68rem; padding:3px 10px; background:var(--bg); color:var(--text-muted); border:1px solid var(--border2);">Machine Learning</span>
+          <span style="font-size:0.68rem; padding:3px 10px; background:var(--bg); color:var(--text-muted); border:1px solid var(--border2);">LLMs</span>
+          <span style="font-size:0.68rem; padding:3px 10px; background:var(--bg); color:var(--text-muted); border:1px solid var(--border2);">Transformers</span>
+          <span style="font-size:0.68rem; padding:3px 10px; background:var(--bg); color:var(--text-muted); border:1px solid var(--border2);">AI Agents</span>
+          <span style="font-size:0.68rem; padding:3px 10px; background:var(--bg); color:var(--text-muted); border:1px solid var(--border2);">n8n Automation</span>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <a href="https://github.com/YOUR_USERNAME/ai-crisis-or-catalyst" target="_blank" style="font-family:'Roboto Condensed',sans-serif; font-weight:700; font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; padding:10px 20px; border:1px solid var(--border2); color:var(--text); text-decoration:none; transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text)'">GitHub ↗</a>
+          <button onclick="seminarTogglePreview()" style="font-family:'Roboto Condensed',sans-serif; font-weight:800; font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; padding:10px 20px; background:var(--accent); color:var(--bg); border:none; cursor:pointer; clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));">View Slides</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes seminarPulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
+</style>
+
+<script>
+  (function(){
+    var loaded = false, isOpen = false;
+    window.seminarTogglePreview = function(){
+      isOpen = !isOpen;
+      var frame = document.getElementById('seminarFrame');
+      var chevron = document.getElementById('seminarChevron');
+      frame.style.maxHeight = isOpen ? '520px' : '0';
+      chevron.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+      if(isOpen && !loaded){
+        loaded = true;
+        // ⚠️ Update this path to where you host the presentation file
+        document.getElementById('seminarIframe').src = 'presentation__28_.html';
+      }
+    };
+  })();
+</script>
+  
 <!-- ACHIEVEMENTS -->
 <section id="achievements">
   <div class="section-header">
