@@ -20,10 +20,19 @@ Technology: SAP ABAP
 Description: Working on enterprise SAP solutions, building and maintaining ABAP programs for large-scale business processes in a global consulting environment.
 
 === WORK EXPERIENCE ===
-1. EY (Ernst & Young) | Jul 2025 – Present | Associate Software Engineer | SAP ABAP | Bengaluru
-2. Game Theory | Apr – Jun 2025 | Operations Manager | Managed operational workflows and processes, ensuring seamless coordination across teams in a fast-paced environment
-3. Vikasana | Apr 2023 – Jan 2025 | Software Engineer | Contributed to software development initiatives, translating requirements into functional solutions while collaborating with cross-functional teams for nearly two years
-Total Professional Experience: 2+ years
+1. Associate Software Engineer at EY (July 2025 - Present, at Bengaluru)
+   - Working on enterprise SAP solutions
+   - Building and maintaining ABAP programs for large-scale business processes
+   - Part of a global consulting environment at one of the Big Four
+
+2. Operations Manager at Game Theory (April - June 2025)
+   - Managed operational workflows and processes
+   - Ensured seamless coordination across teams in fast-paced environment
+
+3. Software Engineer at Vikasana (April 2023 - January 2025)
+   - Contributed to software development initiatives for nearly 2 years
+   - Translated requirements into functional solutions
+   - Collaborated with cross-functional teams
 
 === EDUCATION ===
 B.Tech, Computer Science & Engineering (AIML Specialization) | Presidency University, Bangalore | 2021-2025 | CGPA 7.6
@@ -67,5 +76,15 @@ Enjoys building practical applications that combine AI with real-world use cases
 Fun fact: Born and raised in Bangalore, recently got into vibecoding as a creative outlet
 
 === ADDITIONAL INFO ===
-Notice Period: Currently employed, would discuss during interview process
+CAREER GOALS:
+- Currently in SAP ABAP role at EY but core interest and background in AI/ML
+- Actively working to transition into AI engineering or AI Product Management as soon as possible
+- Looking for opportunities to leverage AI/ML expertise in professional capacity
+
+CONTACT PREFERENCES:
+- Responds well to direct and honest communication
+- Prefers substance over motivational fluff
+- Available via email: anilkumars29.2003@gmail.com
+- LinkedIn: linkedin.com/in/anilkumars29
+- Open to collaborations, job opportunities, and tech discussions
 Preferred Work Mode: Flexible, open to remote/hybrid/on-site based on role requirements
