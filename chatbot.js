@@ -1,6 +1,6 @@
 class Chatbot {
   constructor() {
-    this.apiKey = 'YOUR_GROQ_API_KEY_HERE'; // Replace with your Groq API key
+    this.apiKey = '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'; // Replace with your Groq API key
     this.isOpen = false;
     this.messages = [];
     this.knowledgeBase = '';
