@@ -1473,6 +1473,100 @@
     if (typing) typing.remove();
   }
   
+  // ── CHATBOT (Groq AI) ──
+(function(){
+  // ⚠️ REPLACE THIS WITH YOUR NEW KEY AFTER REVOKING THE EXPOSED ONE
+  const API_KEY = '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';
+  
+  let knowledgeBase = '';
+  let isOpen = false;
+  let hasGreeted = false;
+  let isProcessing = false;
+  
+  // Load knowledge base
+  fetch('anil-info.txt')
+    .then(function(r) { return r.text(); })
+    .then(function(t) { 
+      knowledgeBase = t; 
+      console.log('Knowledge loaded successfully');
+    })
+    .catch(function() { 
+      knowledgeBase = 'Anil Kumar S is an Associate Software Engineer at EY in Bengaluru. Skills: Python, Java, JavaScript, SAP ABAP, AI/ML. Contact: anilkumars29.2003@gmail.com';
+      console.warn('Using fallback knowledge');
+    });
+  
+  // Get DOM elements
+  var toggleBtn = document.getElementById('chatbotToggle');
+  var chatWindow = document.getElementById('chatbotWindow');
+  var chatInput = document.getElementById('chatbotInput');
+  var chatMessages = document.getElementById('chatbotMessages');
+  var suggestions = document.getElementById('chatbotSuggestions');
+  var sendBtn = document.getElementById('chatbotSendBtn');
+  
+  // Check if elements exist
+  if (!toggleBtn) {
+    console.error('Chatbot toggle button not found! Check if HTML has id="chatbotToggle"');
+    return;
+  }
+  if (!chatWindow) {
+    console.error('Chatbot window not found! Check if HTML has id="chatbotWindow"');
+    return;
+  }
+  
+  console.log('Chatbot initialized successfully');
+  
+  // Toggle chat
+  toggleBtn.addEventListener('click', function() {
+    console.log('Toggle clicked, isOpen:', isOpen);
+    isOpen = !isOpen;
+    
+    if (isOpen) {
+      toggleBtn.classList.add('open');
+      chatWindow.classList.add('open');
+    } else {
+      toggleBtn.classList.remove('open');
+      chatWindow.classList.remove('open');
+    }
+    
+    if (isOpen && !hasGreeted) {
+      hasGreeted = true;
+      setTimeout(function() {
+        addMessage('bot', "Hey! 👋 I'm Anil's AI assistant. Ask me anything about his work, skills, or background!");
+      }, 400);
+    }
+    
+    if (isOpen && chatInput) {
+      setTimeout(function() { chatInput.focus(); }, 500);
+    }
+  });
+  
+  // Add message
+  function addMessage(type, text) {
+    if (!chatMessages) return;
+    var div = document.createElement('div');
+    div.className = 'chatbot-message ' + type;
+    div.textContent = text;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+  
+  // Show typing
+  function showTyping() {
+    if (!chatMessages) return;
+    var div = document.createElement('div');
+    div.className = 'chatbot-typing';
+    div.innerHTML = '<span></span><span></span><span></span>';
+    div.id = 'typingIndicator';
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+  
+  // Hide typing
+  function hideTyping() {
+    var typing = document.getElementById('typingIndicator');
+    if (typing) typing.remove();
+  }
+  
   // Call Groq API
   async function callAI(question) {
     try {
@@ -1487,29 +1581,32 @@
           messages: [
             {
               role: 'system',
-              content: 'You are Anil Kumar S\'s assistant. Answer ONLY from this context:\n' + knowledgeBase + '\n\nRules: Only use provided info. If unsure, say "I don\'t have that info." Keep answers short (1-3 sentences). Be friendly.'
+              content: 'You are Anil Kumar S\'s helpful assistant. Answer questions using ONLY this information:\n\n' + knowledgeBase + '\n\nRules:\n1. Only answer from the provided context\n2. If asked something not in the context, say: "I don\'t have that specific information about Anil. Is there something else I can help with?"\n3. Keep answers concise and friendly (2-4 sentences)\n4. Format lists with bullet points when appropriate'
             },
-            {
-              role: 'user',
-              content: question
-            }
+            { role: 'user', content: question }
           ],
           temperature: 0.7,
-          max_tokens: 250
+          max_tokens: 300
         })
       });
+      
+      if (!response.ok) {
+        console.error('API Error:', response.status);
+        return 'Sorry, I had trouble connecting to the AI. Please try again in a moment! 🙏';
+      }
       
       var data = await response.json();
       return data.choices[0].message.content;
     } catch(e) {
-      console.error('API Error:', e);
-      return 'Sorry, I had trouble answering. Please try again! 🙏';
+      console.error('Network Error:', e);
+      return 'Oops! There was a network issue. Please check your connection and try again. 🔄';
     }
   }
   
   // Send message
   window.sendMessage = async function() {
     if (isProcessing) return;
+    if (!chatInput) return;
     
     var input = chatInput.value.trim();
     if (!input) return;
@@ -1517,9 +1614,9 @@
     isProcessing = true;
     addMessage('user', input);
     chatInput.value = '';
-    sendBtn.disabled = true;
+    if (sendBtn) sendBtn.disabled = true;
     showTyping();
-    suggestions.style.display = 'none';
+    if (suggestions) suggestions.style.display = 'none';
     
     var reply = await callAI(input);
     
@@ -1527,8 +1624,8 @@
     addMessage('bot', reply);
     
     isProcessing = false;
-    sendBtn.disabled = false;
-    chatInput.focus();
+    if (sendBtn) sendBtn.disabled = false;
+    if (chatInput) chatInput.focus();
   };
   
   // Ask suggested question
@@ -1537,14 +1634,14 @@
     
     if (!isOpen) {
       toggleBtn.click();
-      await new Promise(function(resolve) { setTimeout(resolve, 500); });
+      await new Promise(function(resolve) { setTimeout(resolve, 600); });
     }
     
     isProcessing = true;
     addMessage('user', question);
-    sendBtn.disabled = true;
+    if (sendBtn) sendBtn.disabled = true;
     showTyping();
-    suggestions.style.display = 'none';
+    if (suggestions) suggestions.style.display = 'none';
     
     var reply = await callAI(question);
     
@@ -1552,8 +1649,8 @@
     addMessage('bot', reply);
     
     isProcessing = false;
-    sendBtn.disabled = false;
-    chatInput.focus();
+    if (sendBtn) sendBtn.disabled = false;
+    if (chatInput) chatInput.focus();
   };
   
 })();
