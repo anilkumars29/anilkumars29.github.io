@@ -1,0 +1,71 @@
+COMPLETE PROFILE OF ANIL KUMAR S
+
+=== PERSONAL INFO ===
+Full Name: Anil Kumar S
+Hometown: Bangalore (born and raised, settled since birth)
+Current Location: Bengaluru, India
+Languages Spoken: English, Kannada, Hindi
+Open to Opportunities: Yes
+Willing to Relocate: Yes, if the work location and role suit me
+Email: anilkumars29.2003@gmail.com
+LinkedIn: linkedin.com/in/anilkumars29
+GitHub: github.com/anilkumars29
+
+=== CURRENT ROLE ===
+Position: Associate Software Engineer
+Company: EY (Ernst & Young) — one of the Big Four consulting firms
+Location: Bengaluru
+Start Date: July 2025
+Technology: SAP ABAP
+Description: Working on enterprise SAP solutions, building and maintaining ABAP programs for large-scale business processes in a global consulting environment.
+
+=== WORK EXPERIENCE ===
+1. EY (Ernst & Young) | Jul 2025 – Present | Associate Software Engineer | SAP ABAP | Bengaluru
+2. Game Theory | Apr – Jun 2025 | Operations Manager | Managed operational workflows and processes, ensuring seamless coordination across teams in a fast-paced environment
+3. Vikasana | Apr 2023 – Jan 2025 | Software Engineer | Contributed to software development initiatives, translating requirements into functional solutions while collaborating with cross-functional teams for nearly two years
+Total Professional Experience: 2+ years
+
+=== EDUCATION ===
+B.Tech, Computer Science & Engineering (AIML Specialization) | Presidency University, Bangalore | 2021-2025 | CGPA 7.6
+Higher Secondary (Science) | MES PU College of Arts, Commerce & Science | 2019-2021 | 80%
+ICSE (Grade I to X) | RT Nagar Public School, Bangalore | 2009-2019 | 86.5%
+
+=== TECHNICAL SKILLS ===
+Programming Languages: Python, Java, JavaScript, SAP ABAP
+AI/ML Specialization: Computer Vision, NLP, Agentic AI, Neural Networks, Deep Learning
+AI/ML Tools: OpenCV, TensorFlow, Scikit-Learn
+Frontend: HTML, CSS, Bootstrap, React.js
+Backend & Databases: Node.js, Express.js, MySQL, MongoDB
+Analytics & Tools: PowerBI, Tableau, MS Excel, VS Code, GitHub
+Current Interests: Computer Vision, NLP, Agentic AI, Neural Networks, Deep Learning
+
+=== PROJECTS ===
+1. Greenhouse Environment Monitoring & Control Platform | Technologies: Arduino, GSM, IoT, Automation | Description: Automated system for monitoring and controlling greenhouse environments. Tracked temperature, humidity, and climate factors using Arduino and GSM modules.
+2. Teacher Record Management System | Technologies: JavaScript, Java, SQL, Full Stack | Description: Full-stack GUI web application for managing teacher records across a university. Integrated SQL database for structured data storage.
+3. Real-Time Object Recognition System | Technologies: Raspberry Pi, OpenCV, CNN, Python | Description: Implemented real-time object recognition using CNNs on Raspberry Pi. Demonstrated practical AI applications in embedded hardware environments.
+
+=== ACHIEVEMENTS ===
+- Contributed to building a ROVER for the International ROVER Challenge organized by SPACE Robotic Society (SPROS)
+- Mentored fresh students as part of the Build Club at Presidency University
+- Active in NSS (National Service Scheme) Presidency for 3 years — leading camps, workshops, and community service initiatives
+- Presented a vision for making Bengaluru a sustainable city at Bengaluru Eco-Summit 2024
+
+=== SEMINARS & TALKS ===
+Title: "AI: Crisis or Catalyst?" | Subtitle: Engineering in the Age of Intelligent Systems | 41 slides | ~60 minute talk | Year: 2025
+Topics Covered: AI History, Machine Learning fundamentals, LLMs, Transformers, AI Agents, n8n Automation
+GitHub Repository: github.com/anilkumars29/ai-seminar
+
+=== HOBBIES & INTERESTS ===
+Sports: Cricket (playing regularly), Badminton (active player)
+Tech Hobby: Vibecoding — recently picked up as a new hobby, building with AI-assisted development
+Passion: Building at the intersection of AI and enterprise software, always exploring what's next in tech
+AI Interest Areas: Computer Vision, NLP, Agentic AI, Neural Networks, Deep Learning
+
+=== PERSONALITY & WORK STYLE ===
+Described as passionate about AI/ML and always exploring the next big thing in tech
+Enjoys building practical applications that combine AI with real-world use cases
+Fun fact: Born and raised in Bangalore, recently got into vibecoding as a creative outlet
+
+=== ADDITIONAL INFO ===
+Notice Period: Currently employed, would discuss during interview process
+Preferred Work Mode: Flexible, open to remote/hybrid/on-site based on role requirements
