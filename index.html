@@ -1396,59 +1396,166 @@
 
 // ── CHATBOT (Groq AI) ──
 (function(){
-  const K='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'; // ⚠️ PUT YOUR REAL KEY HERE
-  var kb='',o=false,g=false,p=false;
+  const API_KEY = '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'; // ⚠️ REPLACE WITH YOUR KEY
   
-  fetch('anil-info.txt').then(r=>r.text()).then(t=>{kb=t}).catch(()=>{kb='Anil Kumar S - Associate Software Engineer at EY in Bengaluru. Skills: Python, Java, JavaScript, SAP ABAP, AI/ML. Contact: anilkumars29.2003@gmail.com'});
+  let knowledgeBase = '';
+  let isOpen = false;
+  let hasGreeted = false;
+  let isProcessing = false;
   
-  document.getElementById('chatbotToggle').addEventListener('click',()=>{
-    o=!o;
-    document.getElementById('chatbotToggle').classList.toggle('open',o);
-    document.getElementById('chatbotWindow').classList.toggle('open',o);
-    if(o&&!g){g=true;setTimeout(()=>{m('bot',"Hey! 👋 I'm Anil's AI assistant. Ask me anything about his work, skills, or background!")},400)}
-    if(o)document.getElementById('chatbotInput').focus()
+  // Load knowledge base
+  fetch('anil-info.txt')
+    .then(r => r.text())
+    .then(t => { knowledgeBase = t; console.log('✅ Knowledge loaded'); })
+    .catch(() => { 
+      knowledgeBase = 'Anil Kumar S is an Associate Software Engineer at EY in Bengaluru. Skills: Python, Java, JavaScript, SAP ABAP, AI/ML. Contact: anilkumars29.2003@gmail.com';
+      console.warn('⚠️ Using fallback knowledge');
+    });
+  
+  // Toggle chat
+  const toggleBtn = document.getElementById('chatbotToggle');
+  const chatWindow = document.getElementById('chatbotWindow');
+  const chatInput = document.getElementById('chatbotInput');
+  const chatMessages = document.getElementById('chatbotMessages');
+  const suggestions = document.getElementById('chatbotSuggestions');
+  const sendBtn = document.getElementById('chatbotSendBtn');
+  
+  if (!toggleBtn) {
+    console.error('❌ Chatbot toggle button not found!');
+    return;
+  }
+  
+  toggleBtn.addEventListener('click', function() {
+    isOpen = !isOpen;
+    
+    if (isOpen) {
+      toggleBtn.classList.add('open');
+      chatWindow.classList.add('open');
+    } else {
+      toggleBtn.classList.remove('open');
+      chatWindow.classList.remove('open');
+    }
+    
+    if (isOpen && !hasGreeted) {
+      hasGreeted = true;
+      setTimeout(function() {
+        addMessage('bot', "Hey! 👋 I'm Anil's AI assistant. Ask me anything about his work, skills, or background!");
+      }, 400);
+    }
+    
+    if (isOpen) {
+      chatInput.focus();
+    }
   });
-
-  async function callAI(q){
-    try{
-      let r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','Authorization':'Bearer '+K},
-        body:JSON.stringify({model:'llama-3.1-8b-instant',messages:[{role:'system',content:'You are Anil Kumar S\'s assistant. Answer ONLY from this context:\n'+kb+'\n\nRules: Only use provided info. If asked something not in context, say "I don\'t have that info about Anil." Keep answers 1-3 sentences. Be friendly.'},{role:'user',content:q}],temperature:0.7,max_tokens:250})
+  
+  // Add message to chat
+  function addMessage(type, text) {
+    var div = document.createElement('div');
+    div.className = 'chatbot-message ' + type;
+    div.textContent = text;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+  
+  // Show typing indicator
+  function showTyping() {
+    var div = document.createElement('div');
+    div.className = 'chatbot-typing';
+    div.innerHTML = '<span></span><span></span><span></span>';
+    div.id = 'typingIndicator';
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+  
+  // Remove typing indicator
+  function hideTyping() {
+    var typing = document.getElementById('typingIndicator');
+    if (typing) typing.remove();
+  }
+  
+  // Call Groq API
+  async function callAI(question) {
+    try {
+      var response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + API_KEY
+        },
+        body: JSON.stringify({
+          model: 'llama-3.1-8b-instant',
+          messages: [
+            {
+              role: 'system',
+              content: 'You are Anil Kumar S\'s assistant. Answer ONLY from this context:\n' + knowledgeBase + '\n\nRules: Only use provided info. If unsure, say "I don\'t have that info." Keep answers short (1-3 sentences). Be friendly.'
+            },
+            {
+              role: 'user',
+              content: question
+            }
+          ],
+          temperature: 0.7,
+          max_tokens: 250
+        })
       });
-      let d=await r.json();
-      return d.choices?.[0]?.message?.content||'Sorry, I had trouble answering. Try again!'
-    }catch(e){return 'Oops! Network error. Please try again. 🔄'}
+      
+      var data = await response.json();
+      return data.choices[0].message.content;
+    } catch(e) {
+      console.error('API Error:', e);
+      return 'Sorry, I had trouble answering. Please try again! 🙏';
+    }
   }
-
-  function m(t,x){let d=document.createElement('div');d.className='chatbot-message '+t;d.textContent=x;document.getElementById('chatbotMessages').appendChild(d);document.getElementById('chatbotMessages').scrollTop=document.getElementById('chatbotMessages').scrollHeight}
-
-  function showT(){let d=document.createElement('div');d.className='chatbot-typing';d.innerHTML='<span></span><span></span><span></span>';d.id='ti';document.getElementById('chatbotMessages').appendChild(d)}
-  function hideT(){let t=document.getElementById('ti');if(t)t.remove()}
-
-  window.sendMessage=async function(){
-    if(p)return;
-    let i=document.getElementById('chatbotInput').value.trim();
-    if(!i)return;
-    p=true;m('user',i);document.getElementById('chatbotInput').value='';
-    document.getElementById('chatbotSendBtn').disabled=true;showT();
-    document.getElementById('chatbotSuggestions').style.display='none';
-    let r=await callAI(i);
-    hideT();m('bot',r);p=false;
-    document.getElementById('chatbotSendBtn').disabled=false;
-    document.getElementById('chatbotInput').focus()
+  
+  // Send message
+  window.sendMessage = async function() {
+    if (isProcessing) return;
+    
+    var input = chatInput.value.trim();
+    if (!input) return;
+    
+    isProcessing = true;
+    addMessage('user', input);
+    chatInput.value = '';
+    sendBtn.disabled = true;
+    showTyping();
+    suggestions.style.display = 'none';
+    
+    var reply = await callAI(input);
+    
+    hideTyping();
+    addMessage('bot', reply);
+    
+    isProcessing = false;
+    sendBtn.disabled = false;
+    chatInput.focus();
   };
-
-  window.askQuestion=async function(q){
-    if(p)return;
-    if(!document.getElementById('chatbotWindow').classList.contains('open')){document.getElementById('chatbotToggle').click();await new Promise(r=>setTimeout(r,500))}
-    p=true;m('user',q);document.getElementById('chatbotSendBtn').disabled=true;showT();
-    document.getElementById('chatbotSuggestions').style.display='none';
-    let r=await callAI(q);
-    hideT();m('bot',r);p=false;
-    document.getElementById('chatbotSendBtn').disabled=false;
-    document.getElementById('chatbotInput').focus()
-  }
+  
+  // Ask suggested question
+  window.askQuestion = async function(question) {
+    if (isProcessing) return;
+    
+    if (!isOpen) {
+      toggleBtn.click();
+      await new Promise(function(resolve) { setTimeout(resolve, 500); });
+    }
+    
+    isProcessing = true;
+    addMessage('user', question);
+    sendBtn.disabled = true;
+    showTyping();
+    suggestions.style.display = 'none';
+    
+    var reply = await callAI(question);
+    
+    hideTyping();
+    addMessage('bot', reply);
+    
+    isProcessing = false;
+    sendBtn.disabled = false;
+    chatInput.focus();
+  };
+  
 })();
 </script>
 
